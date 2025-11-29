@@ -24,9 +24,19 @@ export default function CameraView() {
     canvas.height = video.videoHeight;
 
     const ctx = canvas.getContext("2d");
+
+    ctx.translate(canvas.width, 0);
+    ctx.scale(-1, 1);
+
     ctx.drawImage(video, 0, 0);
 
     const data = canvas.toDataURL("image/png");
+
+    const link = document.createElement("a");
+    link.href = data;
+    link.download = `photo-${Date.now()}.png`;
+    link.click();
+
     setPhoto(data);
   };
 
@@ -38,16 +48,16 @@ export default function CameraView() {
             ref={videoRef}
             autoPlay
             playsInline
-            className="rounded-b-lg max-w-full"
-            style={{ width: "100%", maxWidth: "900px", aspectRatio: "16/9", background: "#000" }}
+            className="rounded-b-lg max-w-full -scale-x-100"
+            style={{ width: "100%", maxWidth: "1000px", aspectRatio: "16/9", background: "#000" }}
           />
-          <div className="w-full max-w-[900px] flex items-center justify-between mt-2 px-4">
+          <div className="w-full max-w-[950px] flex items-center justify-between mt-2 px-2">
             <button className="flex items-center space-x-2">
               <div className="p-1 bg-white border border-slate-300 rounded-md">
-                <ChevronLeft strokeWidth={1.25} strokeOpacity={1}/>
+                <ChevronLeft strokeWidth={1.25} strokeOpacity={1} />
               </div>
               <div className="p-1 bg-white border border-slate-300 rounded-md">
-                <ChevronRight strokeWidth={1.25} strokeOpacity={1}/>
+                <ChevronRight strokeWidth={1.25} strokeOpacity={1} />
               </div>
             </button>
             <button onClick={takePhoto}
