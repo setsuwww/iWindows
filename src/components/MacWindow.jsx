@@ -1,7 +1,7 @@
 export default function MacWindow({ title = "", children, onClose, onMinimize, onMaximize }) {
   return (
     <div className="w-[1000px] rounded-xl overflow-hidden bg-[#f8f8f8] border border-[#d0d0d0] shadow-[0_8px_20px_rgba(0,0,0,0.25)]">
-      <div className=" h-8 flex items-center relative px-4 border-b border-[#d8d8d8] bg-gradient-to-b from-[#e9e9e9] to-[#dcdcdc] backdrop-blur-sm
+      <div className=" h-8 flex items-center relative px-4 border-b border-[#d8d8d8] bg-linear-to-b from-[#e9e9e9] to-[#dcdcdc] backdrop-blur-sm
         "
         style={{
           WebkitAppRegion: "drag"
