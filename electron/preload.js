@@ -1,7 +1,9 @@
-const { contextBridge, ipcRenderer } = require('electron');
+/* eslint-env node */
 
-contextBridge.exposeInMainWorld('win', {
-  minimize: () => ipcRenderer.send('win:minimize'),
-  maximize: () => ipcRenderer.send('win:maximize'),
-  close: () => ipcRenderer.send('win:close')
+const { contextBridge, ipcRenderer } = require("electron");
+
+contextBridge.exposeInMainWorld("api", {
+  close: () => ipcRenderer.send("win:close"),
+  minimize: () => ipcRenderer.send("win:minimize"),
+  toggleMax: () => ipcRenderer.send("win:toggleMax"),
 });
