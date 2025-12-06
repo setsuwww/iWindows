@@ -8,7 +8,6 @@ export default function CameraView() {
   const [preview, setPreview] = useState(null); // foto yang diam untuk edit
   const [selectedEffect, setSelectedEffect] = useState("Normal");
   const [layoutMode, setLayoutMode] = useState("single");
-  const [rotation, setRotation] = useState(0);
 
   const effects = {
     Normal: "none",
@@ -61,11 +60,6 @@ export default function CameraView() {
     setPreview(prev => ({ ...prev, rotation: (prev.rotation + 90) % 360 }));
   };
 
-  const applyEffectPreview = (effect) => {
-    if (!preview) return;
-    setPreview(prev => ({ ...prev, effect }));
-  };
-
   const cycleEffect = () => {
     const idx = effectKeys.indexOf(selectedEffect);
     const next = (idx + 1) % effectKeys.length;
@@ -81,7 +75,7 @@ export default function CameraView() {
       {photos.length > 0 && (
         <div className="flex w-full max-w-[900px] overflow-x-auto space-x-2 p-2 mb-4 hover:scale-115">
           {photos.map((p, i) => (
-            <img key={i} src={p} alt={`Preview ${i}`} className="h-24 rounded-md object-cover flex-shrink-0" />
+            <img key={i} src={p} alt={`Preview ${i}`} className="h-24 rounded-md object-cover shrink-0" />
           ))}
         </div>
       )}
